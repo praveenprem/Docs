@@ -98,7 +98,7 @@ sudo chown -R tomcat webapps/ work/ temp/ logs/
 sudo vim /etc/systemd/system/tomcat.service
 ```
 
-   ###### Copy the following content to the file and replace `<PATH-JAVA-HOME>` `JAVA_HOME` path
+   ###### Copy the following content to the file and replace `<PATH-JAVA-HOME>` with `JAVA_HOME` path
    
    ###### Update `CATALINA_OPTS` if necessary
    
