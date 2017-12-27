@@ -3,14 +3,25 @@
 This documentation is for OpenVPN server installation and configuration for _**username**_ and _**password**_ authentication with _**Certificate**_ Authority and _**HMAC**_
 
 ---
+
+## Table of content
+
+* [Download and installation](#Download and installation)
+* [RSA template](#template)
+* [Configure the OpenVPN service](#Configure the OpenVPN service)
+* [CA variables configuration](#Configure CA variables)
+* [Build Certificate authority](#Build Certificate authority)
+* [Create the Server Certificate, Key, and Encryption Files](#serverKeyFiles)
+---
 ### Download and installation
 
 ```
 apt -y update
 apt -y install openvpn easy-rsa
 ```
+<a name="template"/>
 
-### Copy `easy-rsa` template
+### Copy `easy rsa` template
 
 ```
 make-cadir ~/openvpn-ca
@@ -41,6 +52,9 @@ Build the CA
 ```
 ./build-ca
 ```
+
+<a name="serverKeyFiles"/>
+
 ### Create the Server Certificate, Key, and Encryption Files
 Generate server certificate and key pair.
 ###### Leave password fields empty, unless otherwise required
@@ -139,7 +153,7 @@ group nogroup
 ```
 persist-key
 ```
-###### _Preserver most recent IP address/port
+###### _Preserve most recent IP address/port_
 ```
 persist-tun
 ```
