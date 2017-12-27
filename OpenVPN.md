@@ -174,7 +174,7 @@ persist-key
 ```
 persist-tun
 ```
-###### _Client certificate authentication removal
+###### _Client certificate authentication removal_
 ```
 client-cert-not-required
 ```
@@ -300,7 +300,7 @@ group nogroup
 ```
 persist-key
 ```
-###### _Preserver most recent IP address/port
+###### _Preserver most recent IP address/port_
 ```
 persist-tun
 ```
