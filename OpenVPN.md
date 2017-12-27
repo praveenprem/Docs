@@ -6,13 +6,22 @@ This documentation is for OpenVPN server installation and configuration for _**u
 
 ## Table of content
 
-* [Download and installation](#Download and installation)
+* [Download and installation](#installation)
 * [RSA template](#template)
-* [Configure the OpenVPN service](#Configure the OpenVPN service)
-* [CA variables configuration](#Configure CA variables)
-* [Build Certificate authority](#Build Certificate authority)
+* [CA variables configuration](#varsConfig)
+* [Build Certificate authority](#buildCA)
 * [Create the Server Certificate, Key, and Encryption Files](#serverKeyFiles)
+* [Configure the OpenVPN service](#serviceConfig)
+* [Allow IP forwarding](#ipForwarding)
+* [Firewall rules and connection masquerade](#firewallRules)
+* [Enable default firewall forwarded packets](#packetsForwading)
+* [Open server port and enable changes](#enableServerChanges)
+* [Start and enable the VPN server](#startServer)
+* [Creating client config file](#clientConfig)
+
 ---
+<a name="installation"/>
+
 ### Download and installation
 
 ```
@@ -27,6 +36,8 @@ apt -y install openvpn easy-rsa
 make-cadir ~/openvpn-ca
 ```
 
+<a name="varsConfig"/>
+
 ### Configure CA variables
 Edit `vars` file and update following
 ```
@@ -39,6 +50,9 @@ export KEY_OU=
 
 export KEY_NAME=
 ```
+
+<a name="buildCA"/> 
+
 ### Build Certificate authority
 Source the variables
 ```
@@ -69,6 +83,9 @@ Generate HMAC signature
 ```
 openvpn --genkey --secret keys/ta.key
 ```
+
+<a name="serviceConfig"/>
+
 ### Configure the OpenVPN service
 Copy all the keys to `/etc/openvpn` folder
 ```
@@ -172,6 +189,8 @@ status openvpn-status.log
 verb 3
 ```
 
+<a name="ipForwarding"/>
+
 ### Allow IP forwarding
 Edit the `/etc/sysctl.conf` and uncomment following line
 ```
@@ -181,6 +200,8 @@ Confirm the above change with following command.
 ```
 sudo sysctl -p
 ```
+
+<a name="firewallRules"/>
 
 ### Firewall rules and connection masquerade
 Add new firewall default policy for `postrouting` on `nat` table with `masquerade`
@@ -195,11 +216,15 @@ Replace the `*interface*` with interface name. Use following command to find the
 ip route | grep default
 ```
 
+<a name="packetsForwading"/>
+
 ### Enable default firewall forwarded packets
 Edit `/etc/default/ufw` and update the existing rule with this:
 ```
 DEFAULT_FORWARD_POLICY="ACCEPT"
 ```
+
+<a name="enableServerChanges"/>
 
 ### Open server port and enable changes
 Allow server port on the firewall
@@ -215,6 +240,8 @@ Disable and enable the UFW firewall
 sudo ufw disable
 sudo ufw enable
 ```
+
+<a name="startServer"/>
 
 ### Start and enable the VPN server
 Start the OpenVPN service
@@ -234,6 +261,9 @@ Enable service on system boot
 ```
 sudo systemctl enable openvpn@server
 ```
+
+<a name="clientConfig"/>
+
 ### Creating client config file
 ###### _Define config file type_
 ```
