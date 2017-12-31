@@ -205,6 +205,7 @@ sudo sysctl -p
 
 ### Firewall rules and connection masquerade
 Add new firewall default policy for `postrouting` on `nat` table with `masquerade`
+Edit the `/etc/ufw/before.rules` and add the following
 ```
 *nat
 :POSTROUTING ACCEPT [0:0]
