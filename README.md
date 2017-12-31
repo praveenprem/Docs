@@ -3,3 +3,4 @@
 
 1. [OpenVPN installation and Configuration](./OpenVPN.md)
 2. [Apache Tomcat installation on Ubuntu 16.04](./Tomcat.md)
+3. [MySQL server installation](./MySQL.md)
