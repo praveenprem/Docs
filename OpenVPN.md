@@ -34,6 +34,7 @@ apt -y install openvpn easy-rsa
 
 ```
 make-cadir ~/openvpn-ca
+cd ~/openvpn-ca
 ```
 
 <a name="varsConfig"/>
